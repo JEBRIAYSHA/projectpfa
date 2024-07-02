@@ -1,0 +1,36 @@
+<div class="card border-primary mb-3">
+    <div class="card-header bg-primary text-white "><h1 style="text-align:center;">{{cat?.name}} Details</h1> </div>
+        
+   
+    <div class="card-body">
+        <div *ngIf="cat ; else noCats">
+           <!-- <h1>Cat details</h1> -->
+            <div class="card" >
+                <img [src]="cat.image?baseURL+'storage/files/'+cat.image:'../../assets/images/default-avatar.jpg'" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <strong>   <h2 class="card-title">{{cat.name}}</h2></strong>
+                  
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Race : {{cat.race}}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Weight : {{cat.weight}}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Sex : {{cat.sex}}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Date of birth : {{cat.dat_of_birth}}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Age : {{cat.age}}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Vaccinations : {{cat.vaccinations}}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Description : {{cat.description}}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>status :{{cat.status}} </strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Mediacl history : {{cat.mediacl_history}}</strong></li>
+
+                </ul>
+            
+            </div>
+        </div>
+        <ng-template #noCats>
+            <p>Cat not found</p>
+        </ng-template>
+    </div>
+</div>
+<button class="btn btn-primary" (click)="onCats()">
+    Go to Cats 
+</button>

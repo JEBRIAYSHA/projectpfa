@@ -1,0 +1,92 @@
+ <div class="card border-light mb-3">
+
+    <div class="card-body ">
+
+
+        <ul class="list-group">
+
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                <h1> <span class="badge bg-primary rounded-pill">Welcome to our Cat's Store</span></h1>
+
+                <span><button *ngIf="showAdminFn" type="button" class="btn btn-primary" (click)="OnAddCat()">Add Cat</button> </span>
+                
+               </li>     
+               
+        </ul>
+
+    </div>
+
+
+    <div *ngIf="cats.length > 0; else nocats">
+        <div *ngFor="let cat of cats">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">
+                    <img [src]="cat.image?baseURL+'storage/files/'+cat.image:'../../assets/images/default-avatar.jpg'"
+                        class="card-img-top" alt="...">
+
+                          <h2 style="text-align: center;"><strong> {{cat.name}}</strong></h2>
+                </div>
+                <ul class="list-group">
+                    <!-- <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Name:
+                        {{cat.name}}</strong> </li> -->
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Race:
+                            {{cat.race}}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Sex:
+                        {{cat.sex}}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Age :
+                        {{cat.age}}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><strong>Status:
+                             {{cat.status}}</strong></li>
+
+                </ul>
+
+
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a routerLink="/cats/{{cat.id}}" class="btn btn-success">Details</a>
+                    </li>
+                
+                       
+                </ul>
+
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a routerLink="/cats/edit/{{cat.id}}"  *ngIf="showAdminFn"  class="btn btn-warning">Edit</a>
+                        <button class="btn btn-danger" (click)="onDelete(cat.id)"  *ngIf="showAdminFn" [disabled]="isWaitingDelete">
+                            Delete </button>
+                    </li>
+                </ul>
+
+            </div>
+       
+    </div>
+</div>
+ 
+        <div *ngIf="isWaitingDelete">
+            <span class="spinner-border" role="status"> </span>
+            <h4>cat Deleting ...please wait!</h4>
+
+        </div>
+
+
+    <div [hidden]="!isWaiting">
+
+        <div class="spinner-border" role="status">
+        </div>
+        <h4>Loading ...please wait!</h4>
+    </div>
+   
+    <ng-template #nocats>
+        <p *ngIf="errMsg!= null" class="alert alert-warning">
+            No cat found!
+        </p>
+        <div class="alert alert-danger">
+            <strong>Error!</strong> {{errMsg}}
+        </div>
+    </ng-template>
+</div>
+
+<!-- </div> -->
+
+
+<button class="btn btn-primary mt-5" (click)="onAbout()"> Go to about </button>

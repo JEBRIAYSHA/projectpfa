@@ -1,0 +1,153 @@
+<div class="card border-primary mb-3">
+    <div class="card-header bg-primary text-white "> Edit Cat Component</div>
+
+    <div class="card-body">
+        <h3 *ngIf="!cat.id;else update">Add Cat</h3>
+        <ng-template #update>
+            <h3>Update Cat</h3>
+        </ng-template>
+
+        <form (ngSubmit)="onSubmit()" #form="ngForm">
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" required [(ngModel)]="cat.name" #name="ngModel"
+                    [ngClass]="{'is-invalid':name.invalid && name.dirty,'is-valid':name.valid}">
+
+                <div *ngIf="name.invalid && name.dirty" class="invalid-feedback">
+                    Please provide a name.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="race">Race</label>
+                <input type="text" class="form-control" name="race" required [(ngModel)]="cat.race" #race="ngModel"
+                    [ngClass]="{'is-invalid':race.invalid && race.dirty,'is-valid':race.valid}">
+
+                <div *ngIf="race.invalid && race.dirty" class="invalid-feedback">
+                    Please provide a race.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="weight">Weight</label>
+                <input type="number" class="form-control" name="weight" required [(ngModel)]="cat.weight"
+                pattern="^\d+(\.\d+)?$"   #weight="ngModel" 
+                    [ngClass]="{'is-invalid':weight.invalid && weight.dirty,'is-valid':weight.valid}">
+
+                <div *ngIf="weight.invalid && weight.dirty" class="invalid-feedback">
+                    Please provide a positive weight.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="sex">Sex</label>
+                <input type="text" class="form-control" name="sex" required [(ngModel)]="cat.sex" 
+                     #sex="ngModel"
+                    [ngClass]="{'is-invalid':sex.invalid && sex.dirty,'is-valid':sex.valid}">
+
+                <div *ngIf="sex.invalid && sex.dirty" class="invalid-feedback">
+                    Please provide a valid  sex.
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="dat_of_birth">Date of birth</label>
+                <input type="datetime-local" class="form-control" name="dat_of_birth" required [(ngModel)]="cat.dat_of_birth" #date_of_birth="ngModel"
+                    [ngClass]="{'is-invalid':date_of_birth.invalid && date_of_birth.dirty,'is-valid':date_of_birth.valid}">
+
+                <div *ngIf="date_of_birth.invalid && date_of_birth.dirty" class="invalid-feedback">
+                    Please provide a <span>Date of birth</span> 
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" name="age" required [(ngModel)]="cat.age" 
+                pattern="^\d+(\.\d+)?$"  #age="ngModel"
+                    [ngClass]="{'is-invalid':age.invalid && age.dirty,'is-valid':age.valid}">
+
+                <div *ngIf="age.invalid && age.dirty" class="invalid-feedback">
+                    Please provide a positiv  <span>Age</span> .
+                </div>
+            </div>
+
+
+
+                <div class="form-group">
+                    <label for="vaccinations">Vaccinations (separated with comma",")</label>
+                    <input type="text" class="form-control" name="vaccinations" required [(ngModel)]="vaccinationsCat"
+                        #vaccinations="ngModel"
+                        [ngClass]="{'is-invalid':vaccinations.invalid && vaccinations.dirty,'is-valid':vaccinations.valid}">
+                    <div *ngIf="vaccinations.invalid && vaccinations.dirty" class="invalid-feedback">
+                        Please provide vaccinations.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" name="description" required [(ngModel)]="cat.description" #description="ngModel"
+                        [ngClass]="{'is-invalid':description.invalid && description.dirty,'is-valid':description.valid}">
+    
+                    <div *ngIf="description.invalid && description.dirty" class="invalid-feedback">
+                        Please provide a valid <span>description</span> .
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <input type="text" class="form-control" name="status" required [(ngModel)]="cat.status" #status="ngModel"
+                        [ngClass]="{'is-invalid':status.invalid && status.dirty,'is-valid':status.valid}">
+    
+                    <div *ngIf="status.invalid && status.dirty" class="invalid-feedback">
+                        Please provide a valid <span>Status</span> .
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="mediacl_history">Mediacl History</label>
+                    <input type="text" class="form-control" name="mediacl_history" required [(ngModel)]="cat.mediacl_history" #mediacl_history="ngModel"
+                        [ngClass]="{'is-invalid':mediacl_history.invalid && mediacl_history.dirty,'is-valid':mediacl_history.valid}">
+    
+                    <div *ngIf="mediacl_history.invalid && mediacl_history.dirty" class="invalid-feedback">
+                        Please provide a <span>Mediacl History</span> .
+                    </div>
+                </div>
+    
+    
+           
+            <div class="form-group">
+                <!-- Display the cat's image if the cat has an id (update use case). Use a default avatar if no image is available. -->
+                <img *ngIf="cat.id"
+                    [src]="cat.image ? baseUrl + 'storage/files/' + cat.image : '../../assets/images/default-avatar.jpg'"
+                    class="img-responsive img-rounded" style="max-height: 50px; max-width: 50px;" alt="photo">
+                
+                <!-- File input for selecting a new image, styled as a button. -->
+                <label class="btn btn-success p-0">
+                    <input type="file" (change)="selectFile($event)" />
+                </label>
+                
+                <!-- Display a progress bar when a file is being uploaded. -->
+                <div *ngIf="currentFile" class="progress my-3">
+                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                        attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                        [ngStyle]="{ width: progress + '%' }">
+                        {{ progress }}%
+                    </div>
+                </div>
+                
+                <!-- Display a message if there is one, for example, success or error messages. -->
+                <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid || isLoading ">
+                <span *ngIf="isLoading" class="spinner-border" role="status"> 
+                </span> Save 
+            </button>
+        </form>
+    </div>
+</div>
+<button class="btn btn-primary" (click)="onCats()">Go to Cats</button>
