@@ -4,6 +4,9 @@ package com.example.apiadoptingcat.dao.entities;
 import java.util.Date;
 import java.util.List;
 
+// import org.springframework.boot.convert.DataSizeUnit;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -48,6 +51,7 @@ public class Cat {
 
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date dat_of_birth ;
 
     @Column(nullable = false)

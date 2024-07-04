@@ -1,12 +1,12 @@
 <div class="card border-primary mb-3">
-    <div class="card-header bg-primary text-white "> Edit Cat Component</div>
+    <div class="card-header bg-primary text-white "> 
 
     <div class="card-body">
-        <h3 *ngIf="!cat.id;else update">Add Cat</h3>
+        <h1 *ngIf="!cat.id;else update">Add Cat </h1>
         <ng-template #update>
             <h3>Update Cat</h3>
         </ng-template>
-
+    <!-- </div> -->
         <form (ngSubmit)="onSubmit()" #form="ngForm">
 
             <div class="form-group">
@@ -54,8 +54,10 @@
 
             <div class="form-group">
                 <label for="dat_of_birth">Date of birth</label>
-                <input type="datetime-local" class="form-control" name="dat_of_birth" required [(ngModel)]="cat.dat_of_birth" #date_of_birth="ngModel"
-                    [ngClass]="{'is-invalid':date_of_birth.invalid && date_of_birth.dirty,'is-valid':date_of_birth.valid}">
+                <input type="date" class="form-control" name="dat_of_birth" required [(ngModel)]="cat.dat_of_birth"
+                 #date_of_birth="ngModel"
+                
+                [ngClass]="{'is-invalid':date_of_birth.invalid && date_of_birth.dirty,'is-valid':date_of_birth.valid}">
 
                 <div *ngIf="date_of_birth.invalid && date_of_birth.dirty" class="invalid-feedback">
                     Please provide a <span>Date of birth</span> 
@@ -71,12 +73,7 @@
 
                 <div *ngIf="age.invalid && age.dirty" class="invalid-feedback">
                     Please provide a positiv  <span>Age</span> .
-                </div>
-            </div>
-
-
-
-                <div class="form-group">
+               </div>
                     <label for="vaccinations">Vaccinations (separated with comma",")</label>
                     <input type="text" class="form-control" name="vaccinations" required [(ngModel)]="vaccinationsCat"
                         #vaccinations="ngModel"
@@ -84,12 +81,12 @@
                     <div *ngIf="vaccinations.invalid && vaccinations.dirty" class="invalid-feedback">
                         Please provide vaccinations.
                     </div>
-                </div>
+                </div >
 
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <input type="text" class="form-control" name="description" required [(ngModel)]="cat.description" #description="ngModel"
-                        [ngClass]="{'is-invalid':description.invalid && description.dirty,'is-valid':description.valid}">
+                    <textarea type="text" class="form-control" name="description" required [(ngModel)]="cat.description" #description="ngModel"
+                        [ngClass]="{'is-invalid':description.invalid && description.dirty,'is-valid':description.valid}"></textarea>
     
                     <div *ngIf="description.invalid && description.dirty" class="invalid-feedback">
                         Please provide a valid <span>description</span> .
@@ -98,22 +95,22 @@
 
                 <div class="form-group">
                     <label for="status">Status</label>
-                    <input type="text" class="form-control" name="status" required [(ngModel)]="cat.status" #status="ngModel"
-                        [ngClass]="{'is-invalid':status.invalid && status.dirty,'is-valid':status.valid}">
+                    <textarea type="text" class="form-control" name="status" required [(ngModel)]="cat.status" #status="ngModel"
+                        [ngClass]="{'is-invalid':status.invalid && status.dirty,'is-valid':status.valid}"> </textarea>
     
                     <div *ngIf="status.invalid && status.dirty" class="invalid-feedback">
                         Please provide a valid <span>Status</span> .
                     </div>
-                </div>
+                </div >
 
 
                 <div class="form-group">
                     <label for="mediacl_history">Mediacl History</label>
-                    <input type="text" class="form-control" name="mediacl_history" required [(ngModel)]="cat.mediacl_history" #mediacl_history="ngModel"
-                        [ngClass]="{'is-invalid':mediacl_history.invalid && mediacl_history.dirty,'is-valid':mediacl_history.valid}">
+                    <textarea type="text" class="form-control" name="mediacl_history" required [(ngModel)]="cat.mediacl_history" #mediacl_history="ngModel"
+                        [ngClass]="{'is-invalid':mediacl_history.invalid && mediacl_history.dirty,'is-valid':mediacl_history.valid}"> </textarea>
     
                     <div *ngIf="mediacl_history.invalid && mediacl_history.dirty" class="invalid-feedback">
-                        Please provide a <span>Mediacl History</span> .
+                        Please the <span>Mediacl History</span> .
                     </div>
                 </div>
     
@@ -143,11 +140,11 @@
                 <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
             </div>
             
+   
             <button type="submit" class="btn btn-primary" [disabled]="form.invalid || isLoading ">
                 <span *ngIf="isLoading" class="spinner-border" role="status"> 
                 </span> Save 
             </button>
         </form>
     </div>
-</div>
-<button class="btn btn-primary" (click)="onCats()">Go to Cats</button>
+    <button class="btn btn-primary" (click)="onCats()">Go to Cats</button></div>

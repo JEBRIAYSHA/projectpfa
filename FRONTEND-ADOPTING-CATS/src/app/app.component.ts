@@ -9,7 +9,7 @@ import { AuthServiceService } from './services/auth-service.service';
 })
 export class AppComponent implements OnInit {
   // Title of the project
-  title = 'FRONTEND-ADOPTING-CATS';
+  title = 'MERCY FOR ADOPTING CAT';
 
   // Indicates if the user is authenticated
   isAuth: boolean = false;

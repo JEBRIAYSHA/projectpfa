@@ -5,6 +5,7 @@ import { Cat } from '../shared/cat';
 import { CatService } from '../services/cat.service';
 import { Subscription } from 'rxjs';
 import { AuthServiceService } from '../services/auth-service.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-cats',
@@ -22,6 +23,7 @@ export class CatsComponent  implements OnInit{
   authUserSub!: Subscription; // Subscription to the authenticated user observable
   constructor(private router : Router , 
     private catService : CatService  ,
+    private cartService : CartService,
     private authService: AuthServiceService,
      @Inject('BaseURL') public baseURL:any
   ){}
@@ -82,6 +84,11 @@ export class CatsComponent  implements OnInit{
     // Unsubscribe from the AuthenticatedUser$ observable to prevent memory leaks
     this.authUserSub.unsubscribe();
    }
+
+   addtocart(c : Cat ){
+    this.cartService.addToCart(c);
+
+  }
   
 
 }

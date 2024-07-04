@@ -10,14 +10,14 @@ import { EditCatComponent } from './edit-cat/edit-cat.component';
 import { CatDetailsComponent } from './catdetails/catdetails.component';
 import { authGuard } from './guards/auth-guards.guard';
 import { AdminComponent } from './admin/admin.component';
+import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
   {path:'',canActivate:[authGuard],data: {roles: ['ROLE_ADMIN','ROLE_USER']}, component:HomeComponent},  
-  //{path:'about',canActivate:[authGuard],component:AboutComponent},
   {path:'about',canActivate: [authGuard],data: {roles: ['ROLE_ADMIN','ROLE_USER']},component:AboutComponent},
-  //{path:'cats',canActivate:[authGuard], component:CatsComponent},
   {path:'cats',canActivate:[authGuard], data: {roles: ['ROLE_ADMIN','ROLE_USER']}, component:CatsComponent},
+  {path:'cart',canActivate:[authGuard], data: {roles: ['ROLE_ADMIN','ROLE_USER']}, component:CartComponent},
   {path:'cats/edit/:id', canActivate:[authGuard], data: {roles: ['ROLE_ADMIN']},component:EditCatComponent },
   {path:'cats/:id',canActivate:[authGuard],data: {roles: ['ROLE_ADMIN','ROLE_USER']}, component: CatDetailsComponent},
   {path:'admin', canActivate:[authGuard], data: {roles: ['ROLE_ADMIN']},component:AdminComponent},

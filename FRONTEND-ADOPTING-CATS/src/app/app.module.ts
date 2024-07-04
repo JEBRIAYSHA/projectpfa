@@ -15,6 +15,7 @@ import { CatService } from './services/cat.service';
 import { BaseURL } from './shared/baseurl';
 import { SignupComponent } from './signup/signup.component';
 import { AdminComponent } from './admin/admin.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AdminComponent } from './admin/admin.component';
     CatDetailsComponent,
     EditCatComponent,
     SignupComponent,
-    AdminComponent
+    AdminComponent,
+    CartComponent
   
     
   ],

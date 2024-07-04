@@ -3,6 +3,7 @@ export class Cat {
     id!: any;
     name!: string;
     race!: string;
+    quantity!: number ;
     weight!: number;
     sex!: string; //(male ou femelle)
     dat_of_birth!: Date;

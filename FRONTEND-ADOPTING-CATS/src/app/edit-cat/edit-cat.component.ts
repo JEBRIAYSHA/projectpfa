@@ -77,7 +77,8 @@ onSubmit() {
   // this.router.navigateByUrl('/cats');
 }
 onCats() {
-  this.router.navigateByUrl('/cats');
+  // this.router.navigateByUrl('/cats');
+  this.catService.getCats();
 }
 
 /*upload file*/
@@ -143,5 +144,7 @@ upload(cat: Cat): void {
     this.isLoading = false; //Desactiver le spinner
   }
 }
+
+
 
 }
