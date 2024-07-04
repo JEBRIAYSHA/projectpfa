@@ -18,7 +18,9 @@
 
 
     <div *ngIf="cats.length > 0; else nocats">
-        <div *ngFor="let cat of cats">
+        <div class="row">
+
+            <div class="col-sm-4" *ngFor="let cat of cats">
             <div class="card border-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">
                     <img [src]="cat.image?baseURL+'storage/files/'+cat.image:'../../assets/images/default-avatar.jpg'"
@@ -73,6 +75,7 @@
        
     </div>
 </div>
+</div>
  
         <div *ngIf="isWaitingDelete">
             <span class="spinner-border" role="status"> </span>
@@ -98,7 +101,7 @@
     </ng-template>
 </div>
 
-<!-- </div> -->
+
 
 
 <button class="btn btn-primary mt-5" (click)="onAbout()"> Go to about </button>
